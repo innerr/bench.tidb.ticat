@@ -12,12 +12,12 @@ port=`must_env_val "${env}" 'mysql.port'`
 user=`must_env_val "${env}" 'mysql.user'`
 
 # checks
-# run_sql 'SELECT count(pk), bin(min(pk)), bin(max(pk)) FROM vt.bit'
-# check_contains 'count(pk): 16'
-# check_contains 'bin(min(pk)): 0'
-# check_contains 'bin(max(pk)): 11'
-# run_sql 'SELECT sum(ref) FROM vt.bit WHERE pk = 0b10'
-# check_contains 'sum(ref): 82'
+run_sql 'SELECT count(pk), bin(min(pk)), bin(max(pk)) FROM vt.bit'
+check_contains 'count(pk): 16'
+check_contains 'bin(min(pk)): 0'
+check_contains 'bin(max(pk)): 11'
+run_sql 'SELECT sum(ref) FROM vt.bit WHERE pk = 0b10'
+check_contains 'sum(ref): 82'
 
 run_sql 'SELECT count(pk), min(pk), max(pk), sum(pk) FROM vt.decimal'
 check_contains 'count(pk): 50'
